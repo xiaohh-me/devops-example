@@ -15,5 +15,18 @@ pipeline {
                 mvn clean'''
             }
         }
+        stage('Build By Docker') {
+            steps {
+                sh '''cd docker
+                docker build -t registry.cn-hangzhou.aliyuncs.com/xiaohh-test/devops-example:${tag} .
+                rm -rf java'''
+            }
+        }
+        stage('Push Docker Image To Repository') {
+            steps {
+                sh '''docker push registry.cn-hangzhou.aliyuncs.com/xiaohh-test/devops-example:${tag}
+                docker rmi registry.cn-hangzhou.aliyuncs.com/xiaohh-test/devops-example:${tag}'''
+            }
+        }
     }
 }
