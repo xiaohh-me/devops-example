@@ -21,6 +21,6 @@ public class DevOpsController {
      */
     @GetMapping("/devOps")
     public String devOps() {
-        return "Hello DevOps --- v1.0.0";
+        return "Hello DevOps --- v1.1.0";
     }
 }
